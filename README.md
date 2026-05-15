@@ -1,6 +1,5 @@
 # DevOps Capstone Template
 
-![Build Status](https://github.com/bm-gif24/devops-capstone-project/actions/workflows/ci-build.yaml/badge.svg)
 
 ## Overview
 
