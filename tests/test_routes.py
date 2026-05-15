@@ -138,3 +138,48 @@ class TestAccountService(TestCase):
         """It should not Read an Account that is not found"""
         resp = self.client.get(f"{BASE_URL}/0")
         self.assertEqual(resp.status_code, status.HTTP_404_NOT_FOUND)
+
+    def test_list_all_accounts(self):
+        """It should List all Accounts"""
+
+        # create multiple accounts
+        account1 = AccountFactory()
+        account2 = AccountFactory()
+
+        self.client.post(
+            BASE_URL,
+            json=account1.serialize(),
+            content_type="application/json"
+        )
+
+        self.client.post(
+            BASE_URL,
+            json=account2.serialize(),
+            content_type="application/json"
+        )
+
+        # request all accounts
+        response = self.client.get(
+            BASE_URL,
+            content_type="application/json"
+        )
+
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+        data = response.get_json()
+
+        self.assertEqual(len(data), 2)
+
+    def test_list_no_accounts(self):
+        """It should return an empty list"""
+
+        response = self.client.get(
+            BASE_URL,
+            content_type="application/json"
+        )
+
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+        data = response.get_json()
+
+        self.assertEqual(data, [])
