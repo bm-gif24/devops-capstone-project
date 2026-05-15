@@ -1,5 +1,7 @@
 # DevOps Capstone Template
 
+![Build Status](https://github.com/bm-gif24/devops-capstone-project/actions/workflows/ci-build.yaml/badge.svg)
+
 ## Overview
 
 The devops-capstone-project is a full-stack DevOps capstone focused on building, testing, securing, deploying, and automating a Customer Accounts RESTful microservice using Agile and DevOps best practices.
