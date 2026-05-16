@@ -56,3 +56,19 @@ spec:
       workspaces:
         - name: source
           workspace: pipeline-workspace
+
+    - name: deploy
+      taskRef:
+        kind: ClusterTask
+        name: openshift-client
+      runAfter:
+        - tests
+      params:
+        - name: SCRIPT
+          value: |
+            echo "Deploying to OpenShift..."
+            oc apply -f deploy/
+            oc get pods -l app=accounts
+      workspaces:
+        - name: manifest-dir
+          workspace: pipeline-workspace
