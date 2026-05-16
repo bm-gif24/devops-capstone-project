@@ -45,9 +45,6 @@ spec:
         name: nose
       runAfter:
         - lint
-      workspaces:
-        - name: source
-          workspace: pipeline-workspace
       params:
         - name: database_uri
           value: "sqlite:///test.db"
@@ -56,5 +53,6 @@ spec:
             - "-v"
             - "--with-spec"
             - "--spec-color"
-          runAfter:
-            - clone
+      workspaces:
+        - name: source
+          workspace: pipeline-workspace
